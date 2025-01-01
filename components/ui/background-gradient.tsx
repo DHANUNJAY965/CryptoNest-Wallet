@@ -33,7 +33,9 @@ export const BackgroundGradient: React.FC<BackgroundGradientProps> = ({
             : "from-purple-500 via-purple-400 to-purple-500"
         )}
       />
-      
+      <div className="relative bg-card rounded-xl">
+        {children}
+      </div>
     </div>
   );
 };
