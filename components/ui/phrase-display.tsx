@@ -22,13 +22,7 @@ export const PhraseDisplay: React.FC<PhraseDisplayProps> = ({ phrase, onContinue
   return (
     <div className="max-w-2xl mx-auto">
       <div className="bg-card border border-border rounded-lg p-8 relative">
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 p-1 rounded-lg hover:bg-secondary transition-colors"
-        >
-          <IconX size={20} />
-        </button>
-
+        
         <p className="text-center text-muted-foreground mb-6">
           Write down these 12 words in order and keep them safe. You'll need them to recover your wallets.
         </p>
