@@ -12,6 +12,11 @@ interface PhraseModalProps {
 export function PhraseModal({ phrase, onClose }: PhraseModalProps) {
   const [showPhrase, setShowPhrase] = useState(false);
 
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(phrase);
+    toast.success("Recovery phrase copied to clipboard!");
+  };
+
   return (
     <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
       <div className="bg-card border border-border rounded-lg p-6 max-w-lg w-full space-y-4">
