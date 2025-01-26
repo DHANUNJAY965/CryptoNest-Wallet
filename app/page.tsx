@@ -86,26 +86,25 @@ export default function Home() {
     <main className="min-h-screen">
       <ThemeToggle />
       <SparklesPreview />
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center mt-12">
-    
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center mt-24">
         <div className="flex items-center justify-center gap-3 mb-8">
           <Wallet className="w-5 h-5" />
           <p className="text-lg text-muted-foreground">
             Your secure multi-chain wallet manager
           </p>
-          <Coins className="w-5 h-5" />
+          <Coins className="w-14 h-5" />
         </div>
       </div>
-      <div className="fixed bottom-20 left-1/2 transform -translate-x-1/2 flex gap-4">
+      <div className="fixed bottom-20 left-1/2 transform -translate-x-1/2 flex flex-col sm:flex-row gap-4 w-[90%] max-w-md">
         <button
           onClick={handleGeneratePhrase}
-          className="px-6 py-3 rounded-full bg-gradient-to-r from-[#00ff87] to-[#60efff] text-black font-semibold hover:opacity-90 transition-opacity"
+          className="w-full sm:w-auto px-6 py-3 rounded-lg bg-gradient-to-r from-[#00ff87] to-[#60efff] text-black font-semibold hover:opacity-90 transition-opacity"
         >
           Generate Phrase
         </button>
         <button
           onClick={handleConnectExisting}
-          className="px-6 py-3 rounded-full bg-secondary text-secondary-foreground font-semibold hover:bg-secondary/80 transition-colors"
+          className="w-full sm:w-auto px-6 py-3 rounded-lg bg-secondary text-secondary-foreground font-semibold hover:bg-secondary/80 transition-colors"
         >
           Connect with Existing Phrase
         </button>

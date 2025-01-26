@@ -4,7 +4,7 @@ import { SparklesCore } from "./sparkles-core";
 
 export function SparklesPreview() {
   return (
-    <div className="h-[40rem] relative w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
+    <div className="min-h-screen relative w-full bg-black flex flex-col items-center justify-center overflow-hidden">
       <div className="w-full absolute inset-0 h-screen">
         <SparklesCore
           id="tsparticlesfullpage"
