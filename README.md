@@ -24,7 +24,7 @@ CryptoNest Wallet is a secure and user-friendly cryptocurrency wallet built with
 
 
 ### 🔹 Generating or Importing a Seed Phrase
-![Generating or Importing a Seed Phrase](public/images/Landing-Page.png)
+![Generating or Importing a Seed Phrase](public/images/Generating-seed.png)
 
 
 ### 🔹 Wallets Dashboard
