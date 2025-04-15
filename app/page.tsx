@@ -55,7 +55,7 @@ export default function Home() {
     return (
       <main className="min-h-screen bg-background p-4 sm:p-8">
         <div className="max-w-4xl mx-auto">
-          <ThemeToggle className="absolute top-4 right-4" />
+          <ThemeToggle  />
           <h1 className="text-2xl sm:text-4xl font-bold text-center mb-6 sm:mb-8 pt-10 sm:pt-0">
             Save Your Recovery Phrase
           </h1>
@@ -73,7 +73,7 @@ export default function Home() {
     return (
       <main className="min-h-screen bg-background p-4 sm:p-8">
         <div className="max-w-4xl mx-auto">
-          <ThemeToggle className="absolute top-4 right-4" />
+          <ThemeToggle  />
           <h1 className="text-2xl sm:text-4xl font-bold text-center mb-6 sm:mb-8 pt-10 sm:pt-0">
             Enter Recovery Phrase
           </h1>
@@ -88,7 +88,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen relative">
-      <ThemeToggle className="absolute top-4 right-4 z-30" />
+      <ThemeToggle  />
       <SparklesPreview />
       {/* The wallet manager text has been removed from here since it's now in SparklesPreview */}
       <div className="fixed bottom-10 sm:bottom-20 left-1/2 transform -translate-x-1/2 flex flex-col sm:flex-row gap-3 sm:gap-4 w-[90%] max-w-md z-20">
