@@ -7,7 +7,7 @@ import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "CryptoNest - Your Secure Crypto Wallet Manager",
+  title: "CryptoNest - Crypto Wallet Manager",
   description: "Manage your crypto wallets securely with CryptoNest",
 };
 

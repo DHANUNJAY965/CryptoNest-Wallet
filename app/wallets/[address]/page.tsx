@@ -30,6 +30,7 @@ export default function WalletPage({ params }: { params: { address: string } }) 
   }, [params.address, router]);
 
   const loadBalance = async (wallet: Wallet) => {
+    
     const walletBalance = await getWalletBalance(wallet.network, wallet.publicKey);
     setBalance(walletBalance);
   };
