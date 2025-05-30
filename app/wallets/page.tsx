@@ -88,7 +88,7 @@ export default function WalletsPage() {
     }));
   };
 
-  // Custom ETH and SOL icons for better recognizability
+  // Custom ETH and SOL icons 
   const EthereumIcon = () => (
     <svg width="16" height="16" viewBox="0 0 256 417" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" className="inline-block">
       <path fill="#fff" d="M127.9611 0.0367744L125.1661 9.5877V285.168L127.9611 288L255.9221 212.3L127.9611 0.0367744Z" />
@@ -109,15 +109,12 @@ export default function WalletsPage() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
-        {/* Top navigation bar with responsive layout */}
         <div className="flex flex-col gap-4 mb-8">
-          {/* Top row with title and theme toggle */}
           <div className="flex justify-between items-center">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">CryptoNest</h1>
             <ThemeToggle />
           </div>
           
-          {/* Actions row with responsive wrapping */}
           <div className="flex flex-wrap gap-2 justify-start sm:justify-between items-center w-full">
             {/* Left side - wallet actions */}
             <div className="flex flex-wrap gap-2">
@@ -164,7 +161,6 @@ export default function WalletsPage() {
           </div>
         </div>
 
-        {/* Wallet cards with responsive grid/list layout */}
         {wallets.length === 0 ? (
           <div className="flex flex-col items-center justify-center p-12 text-center border border-dashed border-muted-foreground/50 rounded-xl">
             <p className="text-lg mb-4 text-muted-foreground">No wallets created yet</p>

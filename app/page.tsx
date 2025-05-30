@@ -90,7 +90,6 @@ export default function Home() {
     <main className="min-h-screen relative">
       <ThemeToggle  />
       <SparklesPreview />
-      {/* The wallet manager text has been removed from here since it's now in SparklesPreview */}
       <div className="fixed bottom-10 sm:bottom-20 left-1/2 transform -translate-x-1/2 flex flex-col sm:flex-row gap-3 sm:gap-4 w-[90%] max-w-md z-20">
         <button
           onClick={handleGeneratePhrase}
