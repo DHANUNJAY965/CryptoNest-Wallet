@@ -39,24 +39,47 @@ export default function WalletsPage() {
     }
   }, [router]);
 
-  const handleCreateWallet = (network: 'Ethereum' | 'Solana') => {
+ 
+
+
+  const handleCreateWallet = async (network: 'Ethereum' | 'Solana') => {
     const mnemonic = localStorage.getItem(STORAGE_KEYS.MNEMONICS);
     if (!mnemonic) {
       toast.error("No mnemonic phrase found");
       return;
     }
-
+  
     const networkWallets = wallets.filter(w => w.network === network);
-    const newWallet = generateWallet(network, mnemonic, networkWallets.length);
-
-    if (newWallet) {
-      const updatedWallets = [...wallets, newWallet];
-      setWallets(updatedWallets);
-      localStorage.setItem(STORAGE_KEYS.WALLETS, JSON.stringify(updatedWallets));
-      toast.success(`New ${network} wallet created!`);
+  
+    try {
+      const res = await fetch("/api/createwallet", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          network,
+          mnemonic,
+          index: networkWallets.length,
+        }),
+      });
+  
+      if (!res.ok) throw new Error("Wallet generation failed");
+  
+      const newWallet = await res.json();
+  
+      if (newWallet) {
+        const updatedWallets = [...wallets, newWallet];
+        setWallets(updatedWallets);
+        localStorage.setItem(STORAGE_KEYS.WALLETS, JSON.stringify(updatedWallets));
+        toast.success(`New ${network} wallet created!`);
+      }
+    } catch (err) {
+      toast.error("Failed to create wallet");
+      console.error(err);
     }
   };
-
+  
   const handleClearAll = () => {
     toast.warning(
       "Are you sure you want to clear all wallets?",
@@ -88,7 +111,7 @@ export default function WalletsPage() {
     }));
   };
 
-  // Custom ETH and SOL icons 
+  // Custom ETH and SOL icons for better recognizability
   const EthereumIcon = () => (
     <svg width="16" height="16" viewBox="0 0 256 417" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" className="inline-block">
       <path fill="#fff" d="M127.9611 0.0367744L125.1661 9.5877V285.168L127.9611 288L255.9221 212.3L127.9611 0.0367744Z" />
@@ -109,12 +132,15 @@ export default function WalletsPage() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
+        {/* Top navigation bar with responsive layout */}
         <div className="flex flex-col gap-4 mb-8">
+          {/* Top row with title and theme toggle */}
           <div className="flex justify-between items-center">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">CryptoNest</h1>
             <ThemeToggle />
           </div>
           
+          {/* Actions row with responsive wrapping */}
           <div className="flex flex-wrap gap-2 justify-start sm:justify-between items-center w-full">
             {/* Left side - wallet actions */}
             <div className="flex flex-wrap gap-2">
@@ -161,6 +187,7 @@ export default function WalletsPage() {
           </div>
         </div>
 
+        {/* Wallet cards with responsive grid/list layout */}
         {wallets.length === 0 ? (
           <div className="flex flex-col items-center justify-center p-12 text-center border border-dashed border-muted-foreground/50 rounded-xl">
             <p className="text-lg mb-4 text-muted-foreground">No wallets created yet</p>
@@ -261,3 +288,5 @@ export default function WalletsPage() {
     </div>
   );
 }
+
+
