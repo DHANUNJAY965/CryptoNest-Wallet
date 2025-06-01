@@ -11,7 +11,6 @@ import {
   Loader2
 } from "lucide-react";
 import { Wallet, WalletBalance } from "@/lib/types";
-import { getWalletBalance } from "@/lib/wallet";
 import { STORAGE_KEYS } from "@/lib/constants";
 import { toast } from "sonner";
 
