@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -16,7 +15,7 @@ import { getWalletBalance } from "@/lib/wallet";
 import { STORAGE_KEYS } from "@/lib/constants";
 import { toast } from "sonner";
 
-// Custom ETH and SOL icons 
+// Custom ETH and SOL icons to match the icons in WalletsPage
 const EthereumIcon = () => (
   <svg width="16" height="16" viewBox="0 0 256 417" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" className="inline-block">
     <path fill="currentColor" d="M127.9611 0.0367744L125.1661 9.5877V285.168L127.9611 288L255.9221 212.3L127.9611 0.0367744Z" />
@@ -56,10 +55,26 @@ export default function WalletPage({ params }: { params: { address: string } }) 
     }
   }, [params.address, router]);
 
+
   const loadBalance = async (wallet: Wallet) => {
     try {
       setLoading(true);
-      const walletBalance = await getWalletBalance(wallet.network, wallet.publicKey);
+      const response = await fetch("/api/getwalletbalance", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          network: wallet.network,
+          address: wallet.publicKey,
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to fetch wallet balance");
+      }
+  
+      const walletBalance = await response.json();
       setBalance(walletBalance);
     } catch (error) {
       toast.error("Failed to load wallet balance");
@@ -67,6 +82,7 @@ export default function WalletPage({ params }: { params: { address: string } }) 
       setLoading(false);
     }
   };
+  
 
   const handleAction = (action: 'send' | 'receive' | 'swap') => {
     toast.info(`${action.charAt(0).toUpperCase() + action.slice(1)} feature will be available in the next update. Explore other features for now.`);
@@ -86,7 +102,7 @@ export default function WalletPage({ params }: { params: { address: string } }) 
     );
   }
 
-  // chain-specific styling
+  // Get chain-specific styling
   const getChainStyling = () => {
     const networkLower = wallet.network.toLowerCase();
     if (networkLower === 'ethereum') {
@@ -110,6 +126,7 @@ export default function WalletPage({ params }: { params: { address: string } }) 
   return (
     <div className="min-h-screen bg-background p-4 sm:p-6 md:p-8">
       <div className="max-w-4xl mx-auto">
+        {/* Back button */}
         <button
           onClick={() => router.push("/wallets")}
           className="flex items-center gap-2 mb-4 text-muted-foreground hover:text-foreground transition-colors"
@@ -118,7 +135,9 @@ export default function WalletPage({ params }: { params: { address: string } }) 
           <span>Back to Wallets</span>
         </button>
 
+        {/* Wallet details card */}
         <div className="bg-card rounded-xl shadow-lg overflow-hidden">
+          {/* Wallet header */}
           <div className="p-4 sm:p-6 border-b border-border">
             <div className="flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
               <h1 className="text-2xl font-bold">{wallet.name}</h1>
@@ -164,6 +183,7 @@ export default function WalletPage({ params }: { params: { address: string } }) 
             </div>
           </div>
 
+          {/* Action buttons */}
           <div className="p-4 sm:p-6 pt-0">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
               <button

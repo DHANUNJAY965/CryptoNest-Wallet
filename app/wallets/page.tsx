@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { generateWallet } from "@/lib/wallet";
 import { Wallet } from "@/lib/types";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { STORAGE_KEYS } from "@/lib/constants";
