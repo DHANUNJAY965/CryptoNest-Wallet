@@ -14,7 +14,7 @@ import { Wallet, WalletBalance } from "@/lib/types";
 import { STORAGE_KEYS } from "@/lib/constants";
 import { toast } from "sonner";
 
-// Custom ETH and SOL icons to match the icons in WalletsPage
+// Custom ETH and SOL icons 
 const EthereumIcon = () => (
   <svg width="16" height="16" viewBox="0 0 256 417" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" className="inline-block">
     <path fill="currentColor" d="M127.9611 0.0367744L125.1661 9.5877V285.168L127.9611 288L255.9221 212.3L127.9611 0.0367744Z" />
