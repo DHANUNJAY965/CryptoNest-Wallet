@@ -13,7 +13,6 @@ import {
   ExternalLink
 } from "lucide-react";
 import { Wallet, WalletBalance } from "@/lib/types";
-import { getWalletBalance } from "@/lib/wallet";
 import { STORAGE_KEYS } from "@/lib/constants";
 import { toast } from "sonner";
 
@@ -62,9 +61,22 @@ export default function WalletPage({ params }: { params: { address: string } }) 
 
   const loadBalance = async (wallet: Wallet) => {
     try {
-      setLoading(true);
-      const walletBalance = await getWalletBalance(wallet.network, wallet.publicKey);
-      setBalance(walletBalance);
+     setLoading(true);
+      const response = await fetch("/api/getwalletbalance", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          network: wallet.network,
+          address: wallet.publicKey,
+        }),
+      });
+      // console.log("Fetching balance for:", response);
+      const data = await response.json();
+      // console.log("The balance response:", data);
+      // console.log("The balance data:", data.balance);
+      setBalance(data);
     } catch (error) {
       toast.error("Failed to load wallet balance");
     } finally {
@@ -114,7 +126,7 @@ export default function WalletPage({ params }: { params: { address: string } }) 
     toast.success("Copied to clipboard!");
   };
 
-  // Get currency icon based on network
+
   const getCurrencyIcon = () => {
     const networkLower = wallet?.network.toLowerCase();
     if (networkLower === 'ethereum') {
@@ -126,7 +138,7 @@ export default function WalletPage({ params }: { params: { address: string } }) 
     }
   };
 
-  // Format transaction date
+ 
   const formatDate = (timestamp: number) => {
     return new Date(timestamp * 1000).toLocaleString();
   };
@@ -331,7 +343,7 @@ export default function WalletPage({ params }: { params: { address: string } }) 
             </div>
           </div>
 
-          {/* Action buttons */}
+        
           <div className="p-4 sm:p-6 pt-0">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
               <button
