@@ -104,6 +104,7 @@ export default function Home() {
           Connect with Existing Phrase
         </button>
       </div>
+     
     </main>
   );
 }

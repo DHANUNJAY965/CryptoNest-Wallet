@@ -135,7 +135,7 @@ export default function WalletsPage() {
         <div className="flex flex-col gap-4 mb-8">
           {/* Top row with title and theme toggle */}
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient">CryptoNest</h1>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient hover:cursor-pointer" onClick={() => router.push("/")}>CryptoNest</h1>
             <ThemeToggle />
           </div>
           
