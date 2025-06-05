@@ -2,6 +2,7 @@
 
 import { SparklesPreview } from "@/components/ui/sparkles";
 import { ThemeToggle } from "@/components/theme-toggle";
+
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { generateMnemonic } from "bip39";
@@ -9,7 +10,6 @@ import { useRouter } from "next/navigation";
 import { PhraseDisplay } from "@/components/ui/phrase-display";
 import { PhraseInput } from "@/components/ui/phrase-input";
 import { STORAGE_KEYS } from "@/lib/constants";
-import { Wallet, Coins } from "lucide-react";
 
 export default function Home() {
   const router = useRouter();
@@ -65,6 +65,7 @@ export default function Home() {
             onClose={() => setShowPhraseDisplay(false)}
           />
         </div>
+   
       </main>
     );
   }
@@ -82,6 +83,7 @@ export default function Home() {
             onClose={() => setShowPhraseInput(false)}
           />
         </div>
+       
       </main>
     );
   }
@@ -90,7 +92,7 @@ export default function Home() {
     <main className="min-h-screen relative">
       <ThemeToggle  />
       <SparklesPreview />
-      <div className="fixed bottom-10 sm:bottom-20 left-1/2 transform -translate-x-1/2 flex flex-col sm:flex-row gap-3 sm:gap-4 w-[90%] max-w-md z-20">
+      <div className="fixed bottom-24 sm:bottom-32 left-1/2 transform -translate-x-1/2 flex flex-col sm:flex-row gap-3 sm:gap-4 w-[90%] max-w-md z-20">
         <button
           onClick={handleGeneratePhrase}
           className="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-[#00ff87] to-[#60efff] text-black font-semibold hover:opacity-90 transition-opacity text-sm sm:text-base"
@@ -104,7 +106,7 @@ export default function Home() {
           Connect with Existing Phrase
         </button>
       </div>
-     
+
     </main>
   );
 }
